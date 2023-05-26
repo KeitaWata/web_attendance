@@ -2,40 +2,51 @@
     "timeTable": [
       {
         "id": "1",
-        "name": "Aさん",
-        "workStartS":"21 May 2023 12:01:00 GMT+0900",
-        "workLeaveS":"21 May 2023 12:01:00 GMT+0900",
+        "name": "A",
+        "date":"2023/5/5",
+        "workStartS":"2023-05-05T09:00:00.000+09:00",
+        "workLeaveS":"2023-05-05T018:00:00.000+09:00",
         "workStart":"null",
         "workLeave":"null"
       },
       {
         "id": "2",
-        "name": "Bさん"
+        "name": "B",
+        "date":"2023/5/5",
+        "workStartS":"2023-05-05T09:00:00.000+09:00",
+        "workLeaveS":"2023-05-05T018:00:00.000+09:00",
+        "workStart":"null",
+        "workLeave":"2023-05-05T09:01:21.000+09:00"
       },
       {
         "id": "3",
-        "name": "Cさん"
+        "name": "C",
+        "date":"2023/5/5",
+        "workStartS":"2023-05-05T09:00:00.000+09:00",
+        "workLeaveS":"2023-05-05T018:00:00.000+09:00",
+        "workStart":"2023-05-05T09:01:21.000+09:00",
+        "workLeave":"2023-05-05T018:20:00.000+09:00"
       }
     ],
     "purchaseHistory":[
         {
         "id":"1",
-        "name":"Aさん",
-        "purchaseDate":"21 May 2023 12:01:00 GMT+0900",
+        "name":"A",
+        "purchaseDate":"2023-05-05T011:10:01.000+09:00",
         "productCode":"AAAAAABBBB",
         "refundAmount":4000
         },
         {
         "id":"1",
-        "name":"Aさん",
-        "purchaseDate":"22 May 2023 15:19:00 GMT+0900",
+        "name":"A",
+        "purchaseDate":"2023-05-05T012:08:00.000+09:00",
         "productCode":"AAAAAABBBB",
         "refundAmount":4000
         },
         {
         "id":"2",
-        "name":"Bさん",
-        "purchaseDate":"21 May 2023 12:01:00 GMT+0900",
+        "name":"B",
+        "purchaseDate":"2023-05-05T013:00:00.000+09:00",
         "productCode":"AAAAAABBBB",
         "refundAmount":4000
         }
