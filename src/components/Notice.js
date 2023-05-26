@@ -18,18 +18,28 @@ return (
   <div class="CD">
     <table>
       <tr>
-        <th>日付</th>
-        <th>従業員番号</th>
-        <th>名前</th>
+        <th><h1>通知</h1></th>
       </tr>
     {timeTable.map((timeTable) => {
+      if (timeTable.workStart === "null" && timeTable.workLeave === "null"){
+        return (
+          <tr class="CDcolumn" key={timeTable.id}>
+            <th>{timeTable.name}さんは{timeTable.date}のタイムカードを押していません</th>
+          </tr>
+        )
+    }else if (timeTable.workStart === "null") {
       return (
         <tr class="CDcolumn" key={timeTable.id}>
-          <th>{timeTable.purchaseDate}</th>
-          <th>{timeTable.id}</th>
-          <th>{timeTable.name}</th>
+          <th>{timeTable.name}さんは{timeTable.date}の始業時のタイムカードを押していません</th>
         </tr>
       )
+      }else if (timeTable.workLeave == "null") {
+        return (
+          <tr class="CDcolumn" key={timeTable.id}>
+            <th>{timeTable.name}さんは{timeTable.date}の終業時のタイムカードを押していません</th>
+          </tr>
+        )
+      }
     })}
     </table>
   </div>
