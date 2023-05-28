@@ -26,25 +26,17 @@ return (
         <th>返金額(割引額)</th>
       </tr>
     {purchaseHistory.map((purchaseHistory) => {
-      // function formatDate() {
-      //   var y = purchaseHistory.purchaseDate.getFullYear();
-      //   var m = ('00' + (purchaseHistory.purchaseDate.getMonth()+1)).slice(-2);
-      //   var d = ('00' + purchaseHistory.purchaseDate.getDate()).slice(-2);
-      //   return (y + '-' + m + '-' + d);
-      // }
-      function showDay() {
-        let hoge = new Date(purchaseHistory.purchaseDate);
-        let year = hoge.getFullYear()
-        let month = hoge.getMonth()+1
-        let day = hoge.getDate()
+      function showDate() {
+        let date = new Date(purchaseHistory.purchaseDate);
+        let year = date.getFullYear()
+        let month = date.getMonth()+1
+        let day = date.getDate()
         return (year +"/"+month+ "/"+ day);
       }
-        // let hoge = new Date(purchaseHistory.purchaseDate)
-        // let day = hoge.getDate(),
       
       return (
         <tr class="CDcolumn" key={purchaseHistory.purchasDate}>
-          <th>{showDay()}</th>
+          <th>{showDate()}</th>
           <th>{purchaseHistory.id}</th>
           <th>{purchaseHistory.name}</th>
           <th>{purchaseHistory.productCode}</th>

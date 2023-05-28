@@ -13,7 +13,6 @@ const TimeTable = () => {
     setUsers(res.data);
   };
   getUser();
-  // const currentDate = new Date()
 },[]);
 
 return (
@@ -32,56 +31,56 @@ return (
 
 
       </tr>
-    {timeTable.map((timeTables) => {
-      function showDay() {
-        let hoge = new Date(timeTables.workStartS);
-        let year = hoge.getFullYear()
-        let month = hoge.getMonth()+1
-        let day = hoge.getDate()
+    {timeTable.map((timeTable) => {
+      function showDate() {
+        let date = new Date(timeTable.workStartS);
+        let year = date.getFullYear()
+        let month = date.getMonth()+1
+        let day = date.getDate()
         return (year +"/"+month+ "/"+ day);}
 
         function timeSchedule(time) {
           if (time === "null") {
             return ("00:00")
           } else {
-          let hoge = new Date(time)
-          let hour = hoge.getHours()
-          let minutes = hoge.getMinutes().toString().padStart(2, '0');
+          let date = new Date(time)
+          let hour = date.getHours()
+          let minutes = date.getMinutes().toString().padStart(2, '0');
           return (hour + ':' + minutes)
         }
         }
 
-        function stampQuickly(time) {
-          let hoge = new Date(time)
-          let hour = hoge.getHours()*60
-          let minutes = hoge.getMinutes()
+        function stampMinutes(time) {
+          let times = new Date(time)
+          let hour = times.getHours()*60
+          let minutes = times.getMinutes()
           return (hour + minutes )
        
         }
-        function stampLL(){
-          if (timeTables.workLeave === "null" || timeTables.workStart=== "null") {
+        function minutesToHours(){
+          if (timeTable.workLeave === "null" || timeTable.workStart=== "null") {
             return ("00:00")
           }else {
             let hour = 0
-            let hoge = Math.round(stampQuickly(timeTables.workLeave) - stampQuickly(timeTables.workStart) - 540)
-            for (let i = hoge; i>60 ; i-=60){
+            let minutes = Math.round(stampMinutes(timeTable.workLeave) - stampMinutes(timeTable.workStart) - 540)
+            for (let i = minutes; i>60 ; i-=60){
               hour += 1
             }
-            let hogg = hoge - (hour * 60)
+            let hogg = minutes - (hour * 60)
             return (hour +":"+ hogg)
           }
         }
 
         return (
-          <tr class="CDcolumn" key={timeTables.id}>
-            <th>{showDay()}</th>
-            <th>{timeTables.id}</th>
-            <th>{timeTables.name}</th>
-            <th>{timeSchedule(timeTables.workStartS)}</th>
-            <th>{timeSchedule(timeTables.workLeaveS)}</th>
-            <th>{timeSchedule(timeTables.workStart)}</th>
-            <th>{timeSchedule(timeTables.workLeave)}</th>
-            <th>{stampLL()}</th>
+          <tr class="CDcolumn" key={timeTable.id}>
+            <th>{showDate()}</th>
+            <th>{timeTable.id}</th>
+            <th>{timeTable.name}</th>
+            <th>{timeSchedule(timeTable.workStartS)}</th>
+            <th>{timeSchedule(timeTable.workLeaveS)}</th>
+            <th>{timeSchedule(timeTable.workStart)}</th>
+            <th>{timeSchedule(timeTable.workLeave)}</th>
+            <th>{minutesToHours()}</th>
             <th>1:00</th>
           </tr>
         )

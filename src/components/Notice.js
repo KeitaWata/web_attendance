@@ -22,41 +22,41 @@ return (
       </tr>
     {// eslint-disable-next-line
     timeTable.map((timeTable) => {
-      function showDay() {
-        let hoge = new Date(timeTable.workStartS);
-        let year = hoge.getFullYear()
-        let month = hoge.getMonth()+1
-        let day = hoge.getDate()
+      function showDate() {
+        let date = new Date(timeTable.workStartS);
+        let year = date.getFullYear()
+        let month = date.getMonth()+1
+        let day = date.getDate()
         return (year +"/"+month+ "/"+ day);}
 
-      function stampQuickly(time) {
-        let hoge = new Date(time)
-        let hour = hoge.getHours()*60
-        let minutes = hoge.getMinutes()
+      function stampMinutes(time) {
+        let date = new Date(time)
+        let hour = date.getHours()*60
+        let minutes = date.getMinutes()
         return (hour + minutes )
       }
       if (timeTable.workStart === "null" && timeTable.workLeave === "null"){
         return (
           <tr class="CDcolumn" key={timeTable.id}>
-            <th>{timeTable.name}さんは{showDay()}のタイムカードを押していません</th>
+            <th>{timeTable.name}さんは{showDate()}のタイムカードを押していません</th>
           </tr>
         )
     }else if (timeTable.workStart === "null") {
       return (
         <tr class="CDcolumn" key={timeTable.id}>
-          <th>{timeTable.name}さんは{showDay()}の始業時のタイムカードを押していません</th>
+          <th>{timeTable.name}さんは{showDate()}の始業時のタイムカードを押していません</th>
         </tr>
       )
       }else if (timeTable.workLeave === "null") {
         return (
           <tr class="CDcolumn" key={timeTable.id}>
-            <th>{timeTable.name}さんは{showDay()}の終業時のタイムカードを押していません</th>
+            <th>{timeTable.name}さんは{showDate()}の終業時のタイムカードを押していません</th>
           </tr>
         )
-      }else if (stampQuickly(timeTable.workLeave) - stampQuickly(timeTable.workStart) - 540 > 20) {
+      }else if (stampMinutes(timeTable.workLeave) - stampMinutes(timeTable.workStart) - 540 > 20) {
         return (
         <tr class="CDcolumn" key={timeTable.id}>
-            <th>{timeTable.name}さんは{showDay()}に{Math.round(stampQuickly(timeTable.workLeave) - stampQuickly(timeTable.workStart) - 540)}分残業しています</th>
+            <th>{timeTable.name}さんは{showDate()}に{Math.round(stampMinutes(timeTable.workLeave) - stampMinutes(timeTable.workStart) - 540)}分残業しています</th>
           </tr>
         )
       }
