@@ -11,7 +11,6 @@ function App() {
     <Router>
         <div className="App">
           <Header />
-
           <Routes>
             <Route path="/" element={<Notice />} />
             <Route path="/timetable" element={<TimeTable />} />

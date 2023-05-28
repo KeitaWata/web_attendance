@@ -1,52 +1,54 @@
 {
     "timeTable": [
       {
-        "id": "1",
-        "name": "A",
-        "date":"2023/5/5",
+        "id":1,
+        "name":"A",
         "workStartS":"2023-05-05T09:00:00.000+09:00",
-        "workLeaveS":"2023-05-05T018:00:00.000+09:00",
+        "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
         "workStart":"null",
         "workLeave":"null"
       },
       {
-        "id": "2",
-        "name": "B",
-        "date":"2023/5/5",
-        "workStartS":"2023-05-05T09:00:00.000+09:00",
-        "workLeaveS":"2023-05-05T018:00:00.000+09:00",
-        "workStart":"null",
-        "workLeave":"2023-05-05T09:01:21.000+09:00"
+        "id":2,
+        "name":"B",
+        "workStartS":"2023-05-05T09:10:02.000+09:00",
+        "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
+        "workStart":"2023-05-05T10:10:11.000+09:00",
+        "workLeave":"null"
       },
       {
-        "id": "3",
-        "name": "C",
-        "date":"2023/5/5",
-        "workStartS":"2023-05-05T09:00:00.000+09:00",
-        "workLeaveS":"2023-05-05T018:00:00.000+09:00",
-        "workStart":"2023-05-05T09:01:21.000+09:00",
-        "workLeave":"2023-05-05T018:20:00.000+09:00"
+        "id":3,"name":"C","workStartS":"2023-05-05T09:00:00.000+09:00","workLeaveS":"2023-05-05T018:00:00.000+09:00", "workStart":"null","workLeave":"null"
+      },
+      {
+        "id":3,
+        "name":"C",
+        "workStartS":"2023-05-06T09:00:00.000+09:00",
+        "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
+        "workStart":"2023-05-06T09:01:00.000+09:00",
+        "workLeave":"2023-05-06T18:40:01.000+09:00"
       }
+      
+      
     ],
     "purchaseHistory":[
         {
-        "id":"1",
+        "id":1,
         "name":"A",
-        "purchaseDate":"2023-05-05T011:10:01.000+09:00",
+        "purchaseDate":"2023-05-06T09:00:00.000+09:00",
+        "productCode":"AAAAAABBBB",
+        "refundAmount":2000
+        },
+        {
+        "id":1,
+        "name":"A",
+        "purchaseDate":"2023-05-06T09:00:00.000+09:00",
         "productCode":"AAAAAABBBB",
         "refundAmount":4000
         },
         {
-        "id":"1",
-        "name":"A",
-        "purchaseDate":"2023-05-05T012:08:00.000+09:00",
-        "productCode":"AAAAAABBBB",
-        "refundAmount":4000
-        },
-        {
-        "id":"2",
+        "id":2,
         "name":"B",
-        "purchaseDate":"2023-05-05T013:00:00.000+09:00",
+        "purchaseDate":"2023-05-06T09:00:00.000+09:00",
         "productCode":"AAAAAABBBB",
         "refundAmount":4000
         }

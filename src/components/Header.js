@@ -5,9 +5,8 @@ const Header = () => {
   return  (
     <header>
         <div className='logo'>
-            <h2>退勤管理アプリ</h2>
+            <h2>勤怠管理アプリ</h2>
         </div>
-
         <nav>
             <ul>
                 <li>
