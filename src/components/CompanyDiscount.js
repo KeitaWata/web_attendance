@@ -4,15 +4,45 @@ import axios, { } from 'axios'
 import '../css/main.css';
 
 const CompanyDiscount = () => {
-  const [purchaseHistory,setUsers] = useState([]);
+  const purchaseHistory = [
+    {
+    "id":1,
+    "name":"A",
+    "purchaseDate":"2023-05-06T09:00:00.000+09:00",
+    "productCode":"AAAAAABBBB",
+    "refundAmount":2000
+    },
+    {
+    "id":1,
+    "name":"A",
+    "purchaseDate":"2023-05-06T09:00:00.000+09:00",
+    "productCode":"AAAAAABBBB",
+    "refundAmount":4000
+    },
+    {
+    "id":2,
+    "name":"B",
+    "purchaseDate":"2023-05-06T09:00:00.000+09:00",
+    "productCode":"AAAAAABBBB",
+    "refundAmount":4000
+    },
+    {
+      "id":3,
+      "name":"C",
+      "purchaseDate":"2023-05-06T09:00:00.000+09:00",
+      "productCode":"SOfAGG2937",
+      "refundAmount":12000
+      }
+]
+//   const [purchaseHistory,setUsers] = useState([]);
 
-  useEffect(() => {
-  const getUser = async () => {
-    const res = await axios.get("http://localhost:3100/purchaseHistory");
-    setUsers(res.data);
-  };
-  getUser();
-},[]);
+//   useEffect(() => {
+//   const getUser = async () => {
+//     const res = await axios.get("http://localhost:3100/purchaseHistory");
+//     setUsers(res.data);
+//   };
+//   getUser();
+// },[]);
 
 return (
   <div class="CD">
