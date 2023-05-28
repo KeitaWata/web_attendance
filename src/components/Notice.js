@@ -12,7 +12,6 @@ const Notice = () => {
     setUsers(res.data);
   };
   getUser();
-  // const currentDate = new Date()
 },[]);
 
 return (
@@ -21,7 +20,8 @@ return (
       <tr>
         <th><h1>通知</h1></th>
       </tr>
-    {timeTable.map((timeTable) => {
+    {// eslint-disable-next-line no-unused-vars 
+    timeTable.map((timeTable) => {
       function showDay() {
         let hoge = new Date(timeTable.workStartS);
         let year = hoge.getFullYear()
