@@ -20,7 +20,7 @@ return (
       <tr>
         <th><h1>通知</h1></th>
       </tr>
-    {// eslint-disable-next-line no-unused-vars 
+    {// eslint-disable-next-line
     timeTable.map((timeTable) => {
       function showDay() {
         let hoge = new Date(timeTable.workStartS);
