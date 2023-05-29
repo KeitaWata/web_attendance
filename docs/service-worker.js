@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "KeitaWata.github.io/web_attendance/precache-manifest.4a2d658fd04373307aedc990ab4e7162.js"
+  "/web_attendance/precache-manifest.ad7d7b35c98016f54e0be86c58db6cf4.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("KeitaWata.github.io/web_attendance/index.html", {
+workbox.routing.registerNavigationRoute("/web_attendance/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });

@@ -10,13 +10,13 @@ const Header = () => {
         <nav>
             <ul>
                 <li>
-                    <Link to="/">通知</Link>
+                    <Link to="/web_attendance/">通知</Link>
                 </li>
                 <li>
-                    <Link to="/timetable">タイムテーブル</Link>
+                    <Link to="/web_attendance/timetable">タイムテーブル</Link>
                 </li>
                 <li>
-                    <Link to="/companydiscount">社割履歴</Link>
+                    <Link to="/web_attendance/companydiscount">社割履歴</Link>
                 </li>
             </ul>
         </nav>
