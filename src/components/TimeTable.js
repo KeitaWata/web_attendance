@@ -2,60 +2,62 @@ import React from 'react'
 import { useState,useEffect} from 'react'
 import axios, { } from 'axios'
 import '../css/main.css';
+import db from "./firebase"
+import { collection, getDocs} from "firebase/firestore"
 
 
-const TimeTable = () => {
-  const timeTable = [
-    {
-      "id":1,
-      "name":"A",
-      "workStartS":"2023-05-05T09:00:00.000+09:00",
-      "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
-      "workStart":"null",
-      "workLeave":"null"
-    },
-    {
-      "id":2,
-      "name":"B",
-      "workStartS":"2023-05-05T09:10:02.000+09:00",
-      "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
-      "workStart":"2023-05-05T10:10:11.000+09:00",
-      "workLeave":"null"
-    },
-    {
-      "id":3,
-      "name":"C",
-      "workStartS":"2023-05-05T09:00:00.000+09:00",
-      "workLeaveS":"2023-05-05T18:00:00.000+09:00",
-      "workStart":"null",
-      "workLeave":"null"
-    },
-    {
-      "id":1,
-      "name":"A",
-      "workStartS":"2023-05-06T09:00:00.000+09:00",
-      "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
-      "workStart":"2023-05-06T08:55:00.000+09:00",
-      "workLeave":"2023-05-06T18:12:00.000+09:00"
-    },
-    {
-      "id":2,
-      "name":"B",
-      "workStartS":"2023-05-06T09:00:00.000+09:00",
-      "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
-      "workStart":"null",
-      "workLeave":"2023-05-06T18:50:00.000+09:00"
-    },
-    {
-      "id":3,
-      "name":"C",
-      "workStartS":"2023-05-06T09:00:00.000+09:00",
-      "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
-      "workStart":"2023-05-06T09:01:00.000+09:00",
-      "workLeave":"2023-05-06T18:40:01.000+09:00"
-    }
+// const Timetable = () => {
+//   const timeTable = [
+//     {
+//       "id":1,
+//       "name":"A",
+//       "workStartS":"2023-05-05T09:00:00.000+09:00",
+//       "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
+//       "workStart":"null",
+//       "workLeave":"null"
+//     },
+//     {
+//       "id":2,
+//       "name":"B",
+//       "workStartS":"2023-05-05T09:10:02.000+09:00",
+//       "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
+//       "workStart":"2023-05-05T10:10:11.000+09:00",
+//       "workLeave":"null"
+//     },
+//     {
+//       "id":3,
+//       "name":"C",
+//       "workStartS":"2023-05-05T09:00:00.000+09:00",
+//       "workLeaveS":"2023-05-05T18:00:00.000+09:00",
+//       "workStart":"null",
+//       "workLeave":"null"
+//     },
+//     {
+//       "id":1,
+//       "name":"A",
+//       "workStartS":"2023-05-06T09:00:00.000+09:00",
+//       "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
+//       "workStart":"2023-05-06T08:55:00.000+09:00",
+//       "workLeave":"2023-05-06T18:12:00.000+09:00"
+//     },
+//     {
+//       "id":2,
+//       "name":"B",
+//       "workStartS":"2023-05-06T09:00:00.000+09:00",
+//       "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
+//       "workStart":"null",
+//       "workLeave":"2023-05-06T18:50:00.000+09:00"
+//     },
+//     {
+//       "id":3,
+//       "name":"C",
+//       "workStartS":"2023-05-06T09:00:00.000+09:00",
+//       "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
+//       "workStart":"2023-05-06T09:01:00.000+09:00",
+//       "workLeave":"2023-05-06T18:40:01.000+09:00"
+//     }
     
-  ]
+//   ]
 //   const [timeTable,setUsers] = useState([]);
 
 //   useEffect(() => {
@@ -65,6 +67,14 @@ const TimeTable = () => {
 //   };
 //   getUser();
 // },[]);
+const [timetable, setTimeteble] = useState([]);
+useEffect(() => {
+  //データベースからデータを取得
+  const timetableData = collection(db,"TimeTable");
+  getDocs(timetableData).then((snapShot) => {
+    setTimeteble(snapShot.docs.map((doc) => ({ ...doc.data()})));
+  })
+},[]);
 
 
 return (
@@ -83,9 +93,9 @@ return (
 
 
       </tr>
-    {timeTable.map((timeTable) => {
+    {timetable.map((timetable) => {
       function showDate() {
-        let date = new Date(timeTable.workStartS);
+        let date = new Date(timetable.workStartS);
         let year = date.getFullYear()
         let month = date.getMonth()+1
         let day = date.getDate()
@@ -110,11 +120,11 @@ return (
        
         }
         function minutesToHours(){
-          if (timeTable.workLeave === "null" || timeTable.workStart=== "null") {
+          if (timetable.workLeave === "null" || timetable.workStart=== "null") {
             return ("00:00")
           }else {
             let hour = 0
-            let minutes = Math.round(stampMinutes(timeTable.workLeave) - stampMinutes(timeTable.workStart) - 540)
+            let minutes = Math.round(stampMinutes(timetable.workLeave) - stampMinutes(timetable.workStart) - 540)
             for (let i = minutes; i>60 ; i-=60){
               hour += 1
             }
@@ -124,14 +134,14 @@ return (
         }
 
         return (
-          <tr class="CDcolumn" key={timeTable.id}>
+          <tr class="CDcolumn" key={timetable.id}>
             <th>{showDate()}</th>
-            <th>{timeTable.id}</th>
-            <th>{timeTable.name}</th>
-            <th>{timeSchedule(timeTable.workStartS)}</th>
-            <th>{timeSchedule(timeTable.workLeaveS)}</th>
-            <th>{timeSchedule(timeTable.workStart)}</th>
-            <th>{timeSchedule(timeTable.workLeave)}</th>
+            <th>{timetable.id}</th>
+            <th>{timetable.name}</th>
+            <th>{timeSchedule(timetable.workStartS)}</th>
+            <th>{timeSchedule(timetable.workLeaveS)}</th>
+            <th>{timeSchedule(timetable.workStart)}</th>
+            <th>{timeSchedule(timetable.workLeave)}</th>
             <th>{minutesToHours()}</th>
             <th>1:00</th>
           </tr>
@@ -141,6 +151,5 @@ return (
     </table>
   </div>
  );
-};
 
-export default TimeTable
+export default Timetable
