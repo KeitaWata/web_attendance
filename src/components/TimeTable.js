@@ -2,11 +2,11 @@ import React from 'react'
 import { useState,useEffect} from 'react'
 import axios, { } from 'axios'
 import '../css/main.css';
-import db from "./firebase"
-import { collection, getDocs} from "firebase/firestore"
+import db from "../firebase";
+import { collection, getDocs} from "firebase/firestore";
 
 
-// const Timetable = () => {
+const TimeTable = () => {
 //   const timeTable = [
 //     {
 //       "id":1,
@@ -67,7 +67,7 @@ import { collection, getDocs} from "firebase/firestore"
 //   };
 //   getUser();
 // },[]);
-const [timetable, setTimeteble] = useState([]);
+const [timeTable, setTimeteble] = useState([]);
 useEffect(() => {
   //データベースからデータを取得
   const timetableData = collection(db,"TimeTable");
@@ -93,9 +93,9 @@ return (
 
 
       </tr>
-    {timetable.map((timetable) => {
+    {timeTable.map((timeTable) => {
       function showDate() {
-        let date = new Date(timetable.workStartS);
+        let date = new Date(timeTable.workStartS);
         let year = date.getFullYear()
         let month = date.getMonth()+1
         let day = date.getDate()
@@ -120,11 +120,11 @@ return (
        
         }
         function minutesToHours(){
-          if (timetable.workLeave === "null" || timetable.workStart=== "null") {
+          if (timeTable.workLeave === "null" || timeTable.workStart=== "null") {
             return ("00:00")
           }else {
             let hour = 0
-            let minutes = Math.round(stampMinutes(timetable.workLeave) - stampMinutes(timetable.workStart) - 540)
+            let minutes = Math.round(stampMinutes(timeTable.workLeave) - stampMinutes(timeTable.workStart) - 540)
             for (let i = minutes; i>60 ; i-=60){
               hour += 1
             }
@@ -134,14 +134,14 @@ return (
         }
 
         return (
-          <tr class="CDcolumn" key={timetable.id}>
+          <tr class="CDcolumn" key={timeTable.id}>
             <th>{showDate()}</th>
-            <th>{timetable.id}</th>
-            <th>{timetable.name}</th>
-            <th>{timeSchedule(timetable.workStartS)}</th>
-            <th>{timeSchedule(timetable.workLeaveS)}</th>
-            <th>{timeSchedule(timetable.workStart)}</th>
-            <th>{timeSchedule(timetable.workLeave)}</th>
+            <th>{timeTable.id}</th>
+            <th>{timeTable.name}</th>
+            <th>{timeSchedule(timeTable.workStartS)}</th>
+            <th>{timeSchedule(timeTable.workLeaveS)}</th>
+            <th>{timeSchedule(timeTable.workStart)}</th>
+            <th>{timeSchedule(timeTable.workLeave)}</th>
             <th>{minutesToHours()}</th>
             <th>1:00</th>
           </tr>
@@ -151,5 +151,5 @@ return (
     </table>
   </div>
  );
-
-export default Timetable
+};
+export default TimeTable;
