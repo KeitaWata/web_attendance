@@ -10,28 +10,28 @@ const CompanyDiscount = () => {
     "name":"A",
     "purchaseDate":"2023-05-06T09:00:00.000+09:00",
     "productCode":"AAAAAABBBB",
-    "refundAmount":2000
+    "productPrice":2000
     },
     {
     "id":1,
     "name":"A",
     "purchaseDate":"2023-05-06T09:00:00.000+09:00",
     "productCode":"AAAAAABBBB",
-    "refundAmount":4000
+    "productPrice":4000
     },
     {
     "id":2,
     "name":"B",
     "purchaseDate":"2023-05-06T09:00:00.000+09:00",
     "productCode":"AAAAAABBBB",
-    "refundAmount":4000
+    "productPrice":4000
     },
     {
       "id":3,
       "name":"C",
       "purchaseDate":"2023-05-06T09:00:00.000+09:00",
       "productCode":"SOfAGG2937",
-      "refundAmount":12000
+      "productPrice":12000
       }
 ]
 //   const [purchaseHistory,setUsers] = useState([]);
@@ -70,8 +70,8 @@ return (
           <th>{purchaseHistory.id}</th>
           <th>{purchaseHistory.name}</th>
           <th>{purchaseHistory.productCode}</th>
-          <th>{purchaseHistory.refundAmount}</th>
-          <th>{purchaseHistory.refundAmount/2}</th>
+          <th>{purchaseHistory.productPrice}</th>
+          <th>{purchaseHistory.productPrice/2}</th>
         </tr>
       )
     })}
