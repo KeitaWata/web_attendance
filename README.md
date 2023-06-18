@@ -9,6 +9,10 @@ reactを初めて使って作ってみた勤怠アプリケーション\
 今回は、サーバー上にあげるためデータをファイルに直置きして取り出している。\
 また、フロントの部分しか作っていない。
 
+## firebase
+テスト状態ではあるが、簡単にfirebaseにデータベースを移行して繋げてみた。
+github上で挙げているサイトではまだ反映されていない(時間がかかるか、繋げないかのどちらか)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
