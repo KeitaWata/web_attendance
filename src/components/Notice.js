@@ -2,6 +2,8 @@ import '../css/main.css';
 import React from 'react';
 import { useState,useEffect} from 'react'
 import axios, { } from 'axios'
+import db from "../firebase";
+import { collection, getDocs} from "firebase/firestore";
 
 const Notice = () => {
 //   const [timeTable,setUsers] = useState([]);
@@ -13,58 +15,66 @@ const Notice = () => {
 //   };
 //   getUser();
 // },[]);
+const [timeTable, setTimeteble] = useState([]);
+useEffect(() => {
+  //データベースからデータを取得
+  const timetableData = collection(db,"TimeTable");
+  getDocs(timetableData).then((snapShot) => {
+    setTimeteble(snapShot.docs.map((doc) => ({ ...doc.data()})));
+  })
+},[]);
 
-const timeTable = [
-  {
-    "id":1,
-    "name":"A",
-    "workStartS":"2023-05-05T09:00:00.000+09:00",
-    "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
-    "workStart":"null",
-    "workLeave":"null"
-  },
-  {
-    "id":2,
-    "name":"B",
-    "workStartS":"2023-05-05T09:10:02.000+09:00",
-    "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
-    "workStart":"2023-05-05T10:10:11.000+09:00",
-    "workLeave":"null"
-  },
-  {
-    "id":3,
-    "name":"C",
-    "workStartS":"2023-05-05T09:00:00.000+09:00",
-    "workLeaveS":"2023-05-05T18:00:00.000+09:00",
-    "workStart":"null",
-    "workLeave":"null"
-  },
-  {
-    "id":1,
-    "name":"A",
-    "workStartS":"2023-05-06T09:00:00.000+09:00",
-    "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
-    "workStart":"2023-05-06T08:55:00.000+09:00",
-    "workLeave":"2023-05-06T18:12:00.000+09:00"
-  },
-  {
-    "id":2,
-    "name":"B",
-    "workStartS":"2023-05-06T09:00:00.000+09:00",
-    "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
-    "workStart":"null",
-    "workLeave":"2023-05-06T18:50:00.000+09:00"
-  },
-  {
-    "id":3,
-    "name":"C",
-    "workStartS":"2023-05-06T09:00:00.000+09:00",
-    "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
-    "workStart":"2023-05-06T09:01:00.000+09:00",
-    "workLeave":"2023-05-06T18:40:01.000+09:00"
-  }
+// const timeTable = [
+//   {
+//     "id":1,
+//     "name":"A",
+//     "workStartS":"2023-05-05T09:00:00.000+09:00",
+//     "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
+//     "workStart":"null",
+//     "workLeave":"null"
+//   },
+//   {
+//     "id":2,
+//     "name":"B",
+//     "workStartS":"2023-05-05T09:10:02.000+09:00",
+//     "workLeaveS":"2023-05-05T18:00:00.000+09:00", 
+//     "workStart":"2023-05-05T10:10:11.000+09:00",
+//     "workLeave":"null"
+//   },
+//   {
+//     "id":3,
+//     "name":"C",
+//     "workStartS":"2023-05-05T09:00:00.000+09:00",
+//     "workLeaveS":"2023-05-05T18:00:00.000+09:00",
+//     "workStart":"null",
+//     "workLeave":"null"
+//   },
+//   {
+//     "id":1,
+//     "name":"A",
+//     "workStartS":"2023-05-06T09:00:00.000+09:00",
+//     "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
+//     "workStart":"2023-05-06T08:55:00.000+09:00",
+//     "workLeave":"2023-05-06T18:12:00.000+09:00"
+//   },
+//   {
+//     "id":2,
+//     "name":"B",
+//     "workStartS":"2023-05-06T09:00:00.000+09:00",
+//     "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
+//     "workStart":"null",
+//     "workLeave":"2023-05-06T18:50:00.000+09:00"
+//   },
+//   {
+//     "id":3,
+//     "name":"C",
+//     "workStartS":"2023-05-06T09:00:00.000+09:00",
+//     "workLeaveS":"2023-05-06T18:00:00.000+09:00", 
+//     "workStart":"2023-05-06T09:01:00.000+09:00",
+//     "workLeave":"2023-05-06T18:40:01.000+09:00"
+//   }
   
-]
+// ]
 
 return (
   <div class="CD">

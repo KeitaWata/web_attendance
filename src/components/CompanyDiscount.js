@@ -2,38 +2,40 @@ import React from 'react'
 import { useState,useEffect} from 'react'
 import axios, { } from 'axios'
 import '../css/main.css';
+import db from "../firebase";
+import { collection, getDocs} from "firebase/firestore";
 
 const CompanyDiscount = () => {
-  const purchaseHistory = [
-    {
-    "id":1,
-    "name":"A",
-    "purchaseDate":"2023-05-06T09:00:00.000+09:00",
-    "productCode":"AAAAAABBBB",
-    "productPrice":2000
-    },
-    {
-    "id":1,
-    "name":"A",
-    "purchaseDate":"2023-05-06T09:00:00.000+09:00",
-    "productCode":"AAAAAABBBB",
-    "productPrice":4000
-    },
-    {
-    "id":2,
-    "name":"B",
-    "purchaseDate":"2023-05-06T09:00:00.000+09:00",
-    "productCode":"AAAAAABBBB",
-    "productPrice":4000
-    },
-    {
-      "id":3,
-      "name":"C",
-      "purchaseDate":"2023-05-06T09:00:00.000+09:00",
-      "productCode":"SOfAGG2937",
-      "productPrice":12000
-      }
-]
+//   const purchaseHistory = [
+//     {
+//     "id":1,
+//     "name":"A",
+//     "purchaseDate":"2023-05-06T09:00:00.000+09:00",
+//     "productCode":"AAAAAABBBB",
+//     "productPrice":2000
+//     },
+//     {
+//     "id":1,
+//     "name":"A",
+//     "purchaseDate":"2023-05-06T09:00:00.000+09:00",
+//     "productCode":"AAAAAABBBB",
+//     "productPrice":4000
+//     },
+//     {
+//     "id":2,
+//     "name":"B",
+//     "purchaseDate":"2023-05-06T09:00:00.000+09:00",
+//     "productCode":"AAAAAABBBB",
+//     "productPrice":4000
+//     },
+//     {
+//       "id":3,
+//       "name":"C",
+//       "purchaseDate":"2023-05-06T09:00:00.000+09:00",
+//       "productCode":"SOfAGG2937",
+//       "productPrice":12000
+//       }
+// ]
 //   const [purchaseHistory,setUsers] = useState([]);
 
 //   useEffect(() => {
@@ -43,6 +45,14 @@ const CompanyDiscount = () => {
 //   };
 //   getUser();
 // },[]);
+const [purchaseHistory, setPurchaseHistory] = useState([]);
+useEffect(() => {
+  //データベースからデータを取得
+  const purchaseHistoryData = collection(db,"CompanyDiscount");
+  getDocs(purchaseHistoryData).then((snapShot) => {
+    setPurchaseHistory(snapShot.docs.map((doc) => ({ ...doc.data()})));
+  })
+},[]);
 
 return (
   <div class="CD">
